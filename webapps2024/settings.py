@@ -108,6 +108,8 @@ AUTH_USER_MODEL = 'register.ExtendedUser'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+LOGIN_URL = '/login/'
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
