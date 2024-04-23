@@ -57,7 +57,7 @@ def edit_profile(request):
 
         if 'update_profile' in request.POST and profile_form.is_valid():
             profile_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
+            # messages.success(request, 'Your profile was successfully updated!')
             return redirect('edit_profile')
 
         # Inside the view function
@@ -71,7 +71,7 @@ def edit_profile(request):
                 return redirect('edit_profile')
             else:
                 print('Please correct the error below.')
-                messages.error(request, 'Please correct the error below.')
+                # messages.error(request, 'Please correct the error below.')
         else:
             password_form = PasswordChangeForm(request.user)
     else:

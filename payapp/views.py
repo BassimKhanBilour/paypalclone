@@ -13,7 +13,7 @@ from django.db import transaction as db_transaction
 
 def convert_currency_api(from_currency, to_currency, amount):
     # Assuming your currency conversion service is running locally
-    response = requests.get(f'http://localhost:8000/conversion/{from_currency}/{to_currency}/{amount}')
+    response = requests.get(f'http://127.0.0.1:8000/conversion/{from_currency}/{to_currency}/{amount}')
     if response.status_code == 200:
         return response.json()['converted_amount']
     else:
