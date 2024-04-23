@@ -94,41 +94,6 @@ def send_payment(request):
         'sender_currency': sender_currency,
     })
 
-
-# @login_required
-# def request_payment(request):
-#     if request.method == 'POST':
-#         form = PaymentForm(request.POST)  # Assuming the PaymentForm can be reused or adjusted for payment requests
-#         if form.is_valid():
-#             recipient_email = form.cleaned_data['recipient_email']
-#             amount = form.cleaned_data['amount']
-#             note = form.cleaned_data['note']
-#             sender_id = request.user.id  # Get the user ID
-#
-#             sender = ExtendedUser.objects.get(id=sender_id)
-#             try:
-#                 recipient = ExtendedUser.objects.get(email=recipient_email)
-#
-#                 Transaction.objects.create(
-#                     transaction_type='REQUEST',
-#                     amount=amount,
-#                     sender=sender,
-#                     recipient=recipient,
-#                     currency=sender.currency,
-#                     status='PENDING',  # Assuming requests start as 'PENDING'
-#                     note=note,
-#                     is_notified=False  # Since this is a new request, notification is initially not sent
-#                 )
-#
-#                 messages.success(request, 'Payment request sent successfully.')
-#                 return redirect('request_payment')
-#             except ExtendedUser.DoesNotExist:
-#                 messages.error(request, 'Recipient not found.')
-#     else:
-#         form = PaymentForm()
-#     return render(request, 'payapp/request_payment.html', {'form': form})
-
-
 @login_required
 def request_payment(request):
     sender_id = request.user.id  # Get the user ID
@@ -227,7 +192,7 @@ def fetch_notifications(request):
         recipient=request.user,
         is_notified=False
     ).order_by('-created_at')[:10]
-    # notifications.update(is_notified=True)  # Optionally mark them as read
+    
 
     data = [{
         'sender': notification.sender.username,  # Ensure sender has a username attribute
@@ -303,10 +268,10 @@ def approve_transaction(request, transaction_id):
             return redirect('view_transactions')
 
     except Transaction.DoesNotExist:
-        print('bsdk')
+        print('test')
         messages.error(request, 'Transaction not found.')
     except Exception as e:
-        print('bsdk2' + str(e))
+        print('test' + str(e))
         messages.error(request, f'Error processing transaction: {str(e)}')
 
     return redirect('view_transactions')

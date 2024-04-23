@@ -28,7 +28,7 @@ def register(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
-            # You can add a redirect to login page or wherever you want
+            
             return redirect(reverse('login'))
     else:
         form = SignUpForm()
@@ -65,7 +65,7 @@ def edit_profile(request):
             password_form = PasswordChangeForm(request.user, request.POST)
             if password_form.is_valid():
                 user = password_form.save()
-                update_session_auth_hash(request, user)  # Important!
+                update_session_auth_hash(request, user)  
                 # messages.success(request, 'Your password was successfully updated!')
                 print('Your password was successfully updated!')
                 return redirect('edit_profile')
