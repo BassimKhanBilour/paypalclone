@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'bootstrap4',
     'register',
-    'payapp'
+    'payapp',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
